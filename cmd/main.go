@@ -93,9 +93,9 @@ func main() {
 
 	enc.Encode(writer, result.Image)
 
-	fmt.Println(Red("Failure!").Bold(), "Images are different.")
+	// fmt.Println(Red("Failure!").Bold(), "Images are different.")
 
-	fmt.Printf("Different pixels: %d\n", Red(result.DiffPixelsCount).Bold())
+	fmt.Printf("%d", result.DiffPixelsCount)
 
 	writer.Flush()
 
