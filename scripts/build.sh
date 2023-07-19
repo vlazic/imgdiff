@@ -2,10 +2,10 @@
 
 package_name=imgdiff
 
-platforms=("windows/amd64" "windows/386" "linux/386" "linux/amd64" "darwin/amd64" "darwin/386")
+# platforms=("windows/amd64" "windows/386" "linux/386" "linux/amd64" "darwin/amd64" "darwin/386")
+platforms=("linux/amd64")
 
-for platform in "${platforms[@]}"
-do
+for platform in "${platforms[@]}"; do
     platform_split=(${platform//\// })
     GOOS=${platform_split[0]}
     GOARCH=${platform_split[1]}

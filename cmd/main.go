@@ -1,11 +1,9 @@
 package main
 
 import (
-	"bufio"
 	"fmt"
 	"image"
 	_ "image/jpeg"
-	"image/png"
 	_ "image/png"
 	"log"
 	"os"
@@ -58,7 +56,6 @@ func main() {
 		FailOnLayout bool    `arg:"--fail-on-layout" help:"Do not compare images and produce output if images layout is different." default:"false"`
 		Base         string  `arg:"positional" help:"Base image."`
 		Compare      string  `arg:"positional" help:"Image to compare with."`
-		Output       string  `arg:"positional" help:"Output image path."`
 	}
 
 	arg.MustParse(&args)
@@ -83,23 +80,7 @@ func main() {
 		return
 	}
 
-	enc := &png.Encoder{
-		CompressionLevel: png.BestSpeed,
-	}
-
-	f, _ := os.Create(args.Output)
-
-	writer := bufio.NewWriter(f)
-
-	enc.Encode(writer, result.Image)
-
-	// fmt.Println(Red("Failure!").Bold(), "Images are different.")
-
 	fmt.Printf("%d", result.DiffPixelsCount)
-
-	writer.Flush()
-
-	f.Close()
 
 	os.Exit(1)
 }
